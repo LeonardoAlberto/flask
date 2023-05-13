@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Criar login</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/style.css') }}" />
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+    
+
+
+</head>
+
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header"
+            src="{{ url_for('static',     filename='images/connect.png') }}">
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class=notify>
+        {% for category, message in messages %}
+        <p class="{{ category }} mensagem_notify">{{ message }}</p>
+        {% endfor %}
+    </ul>
+    <script>
+        setTimeout(function () {
+            document.querySelector('.notify').style.display = 'none';
+        }, 6500);
+    </script>
+    {% endif %}
+    {% endwith %}
+
+    <div class="pai">
+        <div class="container_pagamento">
+            <div class="dados">
+                <h2>Verifique os dados abaixo antes do pagamento.</h2><br><br><br>
+
+
+                <h3>Valor: R$ {{ valor }}</h3><br>
+                <h3>Descriçao: {{ descricao }}</h3><br>
+                <h3>Data vencimento: {{ expira }}</h3>
+            </div>
+
+            <div class="imagem_pagamento">
+                <img style="width: 190px; height: 190px; border-radius: 15px;" src="data:image/png;base64,{{ image_qr }}">
+                <button onclick="copyCode()" style="max-width: 190px; border-radius: 12px;" class="btn_criarlogin">Copiar codigo</button>
+            </div>
+
+            <script>
+                function copyCode() {
+                    var texto = "{{ code_qr }}"
+
+                    var copyText = texto;
+                    var tempInput = document.createElement("input");
+                    tempInput.value = copyText;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(tempInput);
+                    alert("Texto copiado para a área de transferência");
+                }
+            </script>
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+
+    </footer>
+
+
+
+</body>
+<script src="{{ url_for('static',     filename='js/script.js') }}"></script>
+
+
+</html>

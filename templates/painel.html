@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/style.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+</head>
+
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header"
+            src="{{ url_for('static',     filename='images/connect.png') }}">
+
+        <div class="logo_user" style="display: inline-block;">
+
+            <img onclick="view_account()" class="logo_user1"
+                src="{{ url_for('static',     filename='images/do-utilizador.png') }}">
+
+            
+            <span style="display: inline-block;" id="teste" class="total_creditos"> {{ creditos_total }} Creditos
+            </span>
+        </div>
+
+        <div id="account" class="account" style="position: absolute; display: none;">
+            <a href="/profile"><i class="acc">Alterar senha</i><br><br></a>
+            <a href="/payment"><i class="acc">Recarregar creditos</i><br><br></a>
+            <a href="/conectar"><i class="acc">Conectar instancia</i><br><br></a>
+            <a href="/logout"><i class="acc">Sair da conta</i><br><br></a>
+        </div>
+
+    </header>
+
+
+
+
+
+    <div class="options">
+        <a href="/criar">
+            <div class="opcao">
+                <img src="{{ url_for('static',     filename='images/adicionar-usuario.png') }}" class="img_options">
+                <p>Adicionar Assinatura</p>
+            </div>
+        </a>
+        <a href="/usuarios">
+            <div class="opcao">
+                <img src="{{ url_for('static',     filename='images/usuarios.png') }}" class="img_options">
+                <p>Vizualizar Assinatura</p>
+            </div>
+        </a>
+        <a href="/historico">
+            <div class="opcao">
+                <img src="{{ url_for('static',     filename='images/consolelog.png') }}" class="img_options">
+                <p>Historico</p>
+            </div>
+        </a>
+    </div>
+
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+    </footer>
+
+
+    <script>
+        $(document).ready(function () {
+            setInterval(function () {
+                $.get('/status_creditos', function (dados) {
+                    $('#teste').text(JSON.stringify(dados) + ' Creditos');
+                });
+            }, 10000);
+        });
+
+
+
+
+
+    </script>
+
+</body>
+<script src="{{ url_for('static',     filename='js/script.js') }}"></script>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Conectar</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/style.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+
+</head>
+
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header"
+            src="{{ url_for('static',     filename='images/connect.png') }}">
+        <a href="/painel">
+            <img class="logo_user" src="{{ url_for('static',     filename='images/voltar.png') }}">
+        </a>
+
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class=notify>
+        {% for category, message in messages %}
+        <p class="{{ category }} mensagem_notify">{{ message }}</p>
+        {% endfor %}
+    </ul>
+    <script>
+        setTimeout(function () {
+            document.querySelector('.notify').style.display = 'none';
+        }, 6500);
+    </script>
+    {% endif %}
+    {% endwith %}
+
+    <div class="options_cadastro">
+        <div class="formulario_login">
+            <h2>Conectar Whatsapp</h2><br>
+
+
+            <div style="display: none;" id="offline">
+                <p class="status_12">Status:</p><br>
+                <span style="background-color: rgb(244, 67, 54);" class="status_connect">Offline</span><br><br>
+                <input class="input_cadastro" id="usuario" name="usuario" type="text" value="{{ user }}"
+                    placeholder="Nome" disabled>
+
+                <button onclick="habilitar_instancia()" class="btn_criarlogin">Gerar instancia</button>
+
+                <script>
+                    function habilitar_instancia() {
+                        var user = document.getElementById("usuario").value
+                        window.location.href = "/habilitar/" + user + "";
+                    }
+                </script>
+
+            </div>
+
+
+            <div style="display: none;" id="online">
+
+                <p class="status_12">Status:</p><br>
+                <span style="background-color: green;" class="status_connect">Online</span><br><br>
+                <input class="input_cadastro" id="usuario" name="usuario" type="text" value="{{ user }}"
+                    placeholder="Nome" disabled>
+                <button onclick="desabilitar_instancia()" class="btn_criarlogin">Desabilitar instancia</button>
+
+                <script>
+                    function desabilitar_instancia() {
+                        var user = document.getElementById("usuario").value
+                        window.location.href = "/desabilitar/" + user + "";
+                    }
+                </script>
+
+            </div>
+
+            <div style="display: none;" id="ativo">
+                <p class=" status_12">Status:</p><br>
+                <span style="background-color: green;" class="status_connect">Iniciando instancia</span><br><br>
+                <input class="input_cadastro" id="usuario" name="usuario" type="text" value="{{ user }}"
+                    placeholder="Nome" disabled>
+
+                <button disabled class="btn_criarlogin">Iniciando instancia</button>
+
+
+            </div>
+
+            <div style="display: none;" id="espera">
+
+                <p class="status_12">Status:</p><br>
+                <span style="background-color: orange;" class="status_connect">Espera</span><br><br>
+
+
+                <!--<input class="input_cadastro" id="usuario" name="usuario" type="text" value="{{ user }}"
+                    placeholder="Nome" disabled>-->
+                <p>Escanei o Qr-Code via whatsapp para ativar o sistema de avisos.</p><br><br><br>
+
+
+                <img id="imagem" src="data:image/png;base64,{{ imagem }}" />
+            </div>
+
+            <div style="display: none;" id="desabilitar">
+                <p class=" status_12">Status:</p><br>
+                <span style="background-color: rgb(244, 67, 54);" class="status_connect">Desabilitando
+                    Instancia</span><br><br>
+                <input class="input_cadastro" id="usuario" name="usuario" type="text" value="{{ user }}"
+                    placeholder="Nome" disabled>
+
+                <button disabled class="btn_criarlogin">Desabilitando</button>
+
+            </div>
+
+
+            <script>
+                $.ajax({
+                    url: '/status',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        document.getElementById(data).style.display = "block"
+                    }
+                });
+
+
+                $(document).ready(function () {
+                    var offline = $("#offline");
+                    var ativo = $("#ativo");
+                    var online = $("#online");
+                    var espera = $("#espera");
+                    var desabilitar = $("#desabilitar");
+
+                    setInterval(function () {
+                        $.ajax({
+                            url: '/status',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (data) {
+                                var id;
+                                switch (data) {
+                                    case "offline":
+                                        id = "#offline";
+                                        break;
+                                    case "ativo":
+                                        id = "#ativo";
+                                        break;
+                                    case "espera":
+                                        id = "#espera";
+                                        break;
+                                    case "desabilitar":
+                                        id = "#desabilitar";
+                                        break;
+                                    case "online":
+                                        id = "#online";
+                                        break;
+                                }
+                                offline.hide();
+                                ativo.hide();
+                                online.hide();
+                                espera.hide();
+                                desabilitar.hide();
+                                $(id).show();
+                            },
+                            error: function (xhr, status, error) {
+                                console.log('Erro ao receber valores: ' + error); // exibe uma mensagem de erro no console do navegador
+                            }
+                        });
+                    }, 5000); // solicita os valores a cada 5 segundos (5000 milissegundos)
+                });
+
+                $(document).ready(function () {
+                    setInterval(function () {
+                        $.get('/imagem', function (data) {
+                            var imagem_base64 = data;
+                            var imagem_url = "data:image/png;base64," + imagem_base64;
+                            $('#imagem').attr('src', imagem_url);
+                        });
+                    }, 3000);
+                });
+
+            </script>
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+    </footer>
+
+
+
+</body>
+<script src="{{ url_for('static',     filename='js/script.js') }}"></script>
+
+</html>

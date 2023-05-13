@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Criar conta</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static',     filename='css/style.css') }}"
+    />
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+</head>
+
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header" src="{{ url_for('static',     filename='images/connect.png') }}">
+    </header>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class=notify>
+        {% for category, message in messages %}
+        <p class="{{ category }} mensagem_notify">{{ message }}</p>
+        {% endfor %}
+    </ul>
+    <script>
+        setTimeout(function () {
+            document.querySelector('.notify').style.display = 'none';
+        }, 6500);
+    </script>
+    {% endif %}
+    {% endwith %}
+
+
+
+    <form action="{{ url_for('register') }}" method="post">
+        <div class="options_cadastro">
+            <div class="formulario_login">
+                <h2>Criar Conta</h2><br>
+                <p>{{ erro }}</p><br>
+                <input class="input_cadastro" name="usuario" type="text" placeholder="Nome" minlength="4" required>
+                <input class="input_cadastro" name="senha" type="password" placeholder="Senha" minlength="4" required>
+                <input class="input_cadastro" name="senha_confirm" type="password" placeholder="Confirmar Senha" required>
+                <input class="input_cadastro" name="numero" type="text" id="numero" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" placeholder="Numero" required>
+                <button class="btn_criarlogin">Criar Conta</button>
+                <a href="/">
+                    <p style="margin-top: 20px;" >Login</p>
+                </a>
+
+
+            </div>
+        </div>
+    </form>
+
+
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+    </footer>
+
+
+
+</body>
+<script    src="{{ url_for('static',     filename='js/script.js') }}"></script>
+</html>

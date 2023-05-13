@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+input,
+select,
+option {
+    color: black;
+}
+
+body {
+
+    background-color: #151a30;
+}
+
+
+header {
+    width: 100%;
+    padding: 15px;
+    background-color: #222b45;
+    box-shadow: rgba(2, 2, 2, 0.44) 0px 3px 8px;
+}
+
+footer {
+    box-shadow: rgba(2, 2, 2, 0.44) 0px 3px 8px;
+    width: 100%;
+    padding: 1px;
+    bottom: 0;
+    background-color: #222b45;
+    position: fixed;
+}
+
+.logo_header {
+    padding-left: 50px;
+    position: relative;
+}
+
+.logo_footer {
+    text-align: center;
+}
+
+.container {
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10%;
+}
+
+h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.paizao {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reset_filtro {
+    margin-right: auto;
+}
+
+.pesquisar_usuarios {
+    margin-left: auto;
+}
+
+.col_superior {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.col_superior:hover {
+    color: rgb(39, 39, 194);
+}
+
+h2 small {
+    font-size: 0.5em;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+#button_pesquisa {
+    width: 12px;
+}
+
+
+input,
+select,
+button {
+    padding: 10px;
+    margin: 0;
+
+}
+
+.btn {
+    color: black;
+}
+
+.responsive-table li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.responsive-table .table-header {
+    background-color: rgb(244, 67, 54);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-top: 25px;
+}
+
+.responsive-table .table-row {
+    background-color: #222b45;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+
+.responsive-table .col-1 {
+    flex-basis: 15%;
+}
+
+.responsive-table .col-2 {
+    flex-basis: 29%;
+}
+
+.responsive-table .col-3 {
+    flex-basis: 25%;
+}
+
+.responsive-table .col-4 {
+    flex-basis: 30%;
+}
+
+.responsive-table .col-5 {
+    flex-basis: 15%;
+}
+
+.responsive-table .col-6 {
+    flex-basis: 18%;
+}
+
+
+@media all and (max-width: 767px) {
+    .responsive-table .table-header {
+        display: none;
+
+    }
+
+    input, button, select {
+        padding: 10px;
+        background-color: white;
+        border: none;
+        box-sizing: border-box;
+    }
+    select {
+        border-radius: 0;
+    }
+    .paizao {
+        display: block;
+    }
+    .pesquisar_usuarios {
+        margin-top: 10px;
+        display: flex;
+        text-align: end;
+    }
+    #select_pesquisa {
+        margin-right: 5px;
+    }
+    #pesquisa {
+        margin-right: 5px;
+    }
+    .reset_filtro {
+        text-align: end;
+    }
+
+    .responsive-table li {
+        display: block;
+        margin: 5px;
+        margin-top: 15px;
+    }
+
+    .responsive-table .col {
+        flex-basis: 100%;
+    }
+
+    .responsive-table .col {
+        display: flex;
+        padding: 10px 0;
+    }
+
+    .responsive-table .col:before {
+        color: #6c7a89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+    }
+
+    .pesquisar_usuarios {
+        margin-left: 22%;
+    }
+    .container {
+        margin-bottom: 30%;
+    }
+
+}

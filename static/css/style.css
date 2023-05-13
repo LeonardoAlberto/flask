@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden;
+  color: white;
+}
+
+body {
+  background-color: #151a30;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  width: 100%;
+  padding: 15px;
+  background-color: #222b45;
+  box-shadow: rgba(2, 2, 2, 0.44) 0px 3px 8px;
+}
+footer {
+  box-shadow: rgba(2, 2, 2, 0.44) 0px 3px 8px;
+  width: 100%;
+  padding: 15px;
+  bottom: 0;
+  background-color: #222b45;
+  position: fixed;
+}
+
+.logo_header {
+  padding-left: 50px;
+  position: relative;
+}
+
+.logo_footer {
+  text-align: center;
+}
+.status_12{
+  margin-bottom: 8px;
+}
+.status_connect {
+  padding: 6.5px;
+  border-radius: 9px;
+  display: inline;
+}
+
+.opcao {
+  width: 200px;
+  height: 200px;
+  background-color: #222b45;
+  display: inline-block;
+  margin: 50px;
+  border-radius: 25px;
+  cursor: pointer;
+
+  box-shadow: rgba(2, 2, 2, 0.44) 0px 3px 8px;
+}
+
+.logo_user {
+  display: inline-block;
+  position: absolute;
+  right: 50px;
+}
+.logo_user1 {
+  cursor: pointer;
+}
+.account {
+  background-color: #222b45;
+  margin-top: 30px;
+  padding: 6px;
+  z-index: 9;
+  border-radius: 3px;
+  box-shadow: rgba(2, 2, 2, 0.44) 0px 3px 8px;
+  right: 75px;
+}
+.acc {
+  margin-top: 9px;
+}
+
+.total_creditos {
+  background-color: #dc3545;
+  border-radius: 13px;
+  padding: 6px;
+}
+
+
+.opcao {
+  position: relative;
+  top: 0;
+  padding: 4px;
+  background-color: #222b45;
+  transition: all 0.2s ease-in-out;
+}
+.opcao:hover {
+  top: -8px;
+  box-shadow: 0 4px 3px #222b45;
+}
+
+.options {
+  text-align: center;
+  margin-top: 5%;
+  z-index: 1;
+}
+.options_cadastro {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.img_options {
+  margin-top: 30%;
+}
+.formulario_cadastro {
+  background-color: #222b45;
+  padding: 15px;
+  padding-top: 60px;
+  margin: 25px;
+  width: 350px;
+  text-align: center;
+  margin-top: 5%;
+  border-radius: 17px;
+
+}
+
+.formulario_login {
+  background-color: #222b45;
+  padding: 15px;
+  padding-bottom: 80px;
+  padding-top: 60px;
+  margin: 20px;
+  width: 350px;
+  text-align: center;
+  margin-top: 5%;
+  box-shadow: rgba(0, 0, 0, 0.44) 0px 3px 8px;
+  border-radius: 14px;
+
+}
+
+
+input {
+     color: black;   
+}
+.input_cadastro {
+  padding: 15px;
+  margin: 13px;
+  width: 220px;
+  max-width: 220px;
+  border: 0.5px solid black;
+}
+
+.btn_criarlogin {
+  margin: auto;
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dc3545;
+  width: 252.2px;
+  max-width: 252.2px;
+  padding: 16px;
+  border: none;
+
+}
+input:focus {
+  outline: none;
+}
+
+.container_pagamento {
+  width: 1200px;
+  height: 400px;
+  background-color: #222b45;
+  margin-top: 10%;
+  border-radius: 20px;
+}
+.dados {
+  margin: 70px;
+  display: inline-block;
+}
+
+.imagem_pagamento {
+  display: inline-block;
+  margin-left: 170px;
+  
+}
+#imagem {
+  background-color: white;
+  padding: 5px;
+  width: 244.2px;
+  max-width: 244.2px;
+  border-radius: 5px;
+}
+
+.pai {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.mensagem_notify {
+  text-align: center;
+  color: white;
+  width: 100%;
+  padding: 6px;
+}
+
+.success {
+  background-color: #28a745;
+  color: #fff;
+}
+.error {
+  background-color: #dc3545;
+  color: #fff;
+}
+.info {
+  background-color: #17a2b8;
+  color: #fff;
+}
+.warn {
+  background-color: #ec7600  ;
+  color: #fff;
+}
+
+
+@media (max-width: 767px) {
+  .container_pagamento {
+    height: 800px;
+    background-color: #222b45;
+    text-align: center;
+  }
+  .imagem_pagamento {
+    margin-left: 0;
+  }
+
+
+
+
+  .options {
+    margin-bottom: 25%;
+  }
+  .options_cadastro {
+    margin-bottom: 10%;
+  }
+  .logo_user {
+    display: inline-block;
+    position: absolute;
+    right: 25px;
+  }
+  .logo_header {
+    padding-left: 5px;
+    position: relative;
+
+  }
+  input {
+    -webkit-appearance: none;
+    appearance: none;
+}
+}

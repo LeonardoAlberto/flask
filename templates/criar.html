@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Criar Assinatura</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static',     filename='css/style.css') }}"
+    />
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+
+
+</head>
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header" src="{{ url_for('static',     filename='images/connect.png') }}">
+        <a href="/painel">
+            <img class="logo_user" src="{{ url_for('static',     filename='images/voltar.png') }}">
+        </a>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class=notify>
+        {% for category, message in messages %}
+        <p class="{{ category }} mensagem_notify">{{ message }}</p>
+        {% endfor %}
+    </ul>
+    <script>
+        setTimeout(function () {
+            document.querySelector('.notify').style.display = 'none';
+        }, 6500);
+    </script>
+    {% endif %}
+    {% endwith %}
+    
+    <form action="{{ url_for('criar') }}" method="post">
+        <div class="options_cadastro">
+            <div class="formulario_cadastro">
+                <h2>Criar Assinatura</h2>
+                <p>{{ erro }}</p>
+                <input name="cliente" class="input_cadastro" type="text" placeholder="Nome" required>
+                <input name="vencimento" class="input_cadastro" id="date" type="datetime-local" placeholder="Vencimento" required maxlength="">
+                <input name="numero" class="input_cadastro" type="text" id="numero" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" placeholder="Numero" minlength="15" maxlength="15" required/>
+                <input name="valor" class="input_cadastro" type="text" placeholder="Valor" required>
+                <input name="plano" class="input_cadastro" type="text" placeholder="Plano Atual" required>
+    
+                <button onclick="teste()" class="btn_criarlogin">Criar Assinatura</button><br><br>
+    
+    
+            </div>
+        </div>
+    </form>
+
+
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+        
+    </footer>
+
+
+    
+</body>
+<script    src="{{ url_for('static',     filename='js/script.js') }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js%22%3E"></script>
+
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Usuarios</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/style_table.css') }}" />
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+</head>
+
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header"
+            src="{{ url_for('static',     filename='images/connect.png') }}">
+        <a href="/painel">
+            <img class="logo_user" src="{{ url_for('static',     filename='images/voltar.png') }}">
+        </a>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class=notify>
+        {% for category, message in messages %}
+        <p class="{{ category }} mensagem_notify">{{ message }}</p>
+        {% endfor %}
+    </ul>
+    <script>
+        setTimeout(function () {
+            document.querySelector('.notify').style.display = 'none';
+        }, 6500);
+    </script>
+    {% endif %}
+    {% endwith %}
+
+
+    <div class="container">
+        <div class="paizao">
+            <div class="reset_filtro">
+                <a href="/usuarios">
+                    <button class="btn">Resetar Filtro</button>
+                </a>
+            </div>
+
+            <div class="pesquisar_usuarios">
+                <select id="select_pesquisa">
+                    <option value="id">Id</option>
+                    <option value="nome">Nome</option>
+                    <option value="numero">Numero</option>
+                    <option value="valor">Valor</option>
+                    <option value="plano">Plano</option>
+
+                </select>
+                <input type="text" name="search" id="pesquisa" placeholder="Pesquisar..">
+                <button id="btn_img_pesquisar" onclick="pesquisar()"><img id="button_pesquisa"
+                        src="{{ url_for('static',     filename='images/search.png') }}"></button>
+            </div>
+        </div>
+
+        <ul class="responsive-table">
+            
+        
+            
+            
+        <p>{{ len }} Assinaturas encontradas.</p>
+            <li class="table-header">
+                <div onclick="ordenar_id()" class="col col_superior col-1">ID</div>
+                <div onclick="ordenar_nome()" class="col col_superior col-2">NOME</div>
+                <div onclick="ordenar_adicionado()" class="col col_superior col-3">Adicionado</div>
+                <div onclick="ordenar_vencimento()" class="col col_superior col-3">VENCIMENTO</div>
+                <div onclick="ordenar_numero()" class="col col_superior col-4">NUMERO</div>
+                <div onclick="ordenar_valor()" class="col col_superior col-5">VALOR</div>
+                <div onclick="ordenar_plano()" class="col col_superior col-6">PLANO</div>
+                <div class="col col_superior col-6">AÇOES</div>
+            </li>
+            {% for i in range(0, len) %}
+            <li class="table-row">
+                <div class="col col-1" data-label="ID">{{clientes[i][5]}}</div>
+                <div class="col col-2" data-label="Nome">{{clientes[i][0]}}</div>
+                <div class="col col-3" data-label="Adicionado">
+                    {{clientes[i][6][8:10]}}/{{clientes[i][6][5:7]}}/{{clientes[i][6][0:4]}}-{{clientes[i][6][11:16]}}
+                </div>
+                <div class="col col-3" data-label="Vencimento">
+                    {{clientes[i][1][8:10]}}/{{clientes[i][1][5:7]}}/{{clientes[i][1][0:4]}}-{{clientes[i][1][11:16]}}
+                </div>
+                <div class="col col-4" data-label="Numero">{{clientes[i][2]}}</div>
+                <div class="col col-5" data-label="Valor">{{clientes[i][3]}}</div>
+                <div class="col col-6" data-label="Plano">{{clientes[i][4]}}</div>
+
+                <div class="col col-6" data-label="Açoes">
+                    <a href="/usuarios/{{  clientes[i][5]}}  ">
+                        <img style="width: 32px; margin-right: 5px;"
+                            src="{{ url_for('static',     filename='images/editar.png') }}" />
+                    </a>
+                    <a href="/usuarios/deletar/{{  clientes[i][5]}}  ">
+                        <img style="width: 32px; margin-right: 5px;"
+                            src="{{ url_for('static',     filename='images/delete.png') }}" />
+                    </a>
+                    <a href="/usuarios/renovar/{{  clientes[i][5]}}  ">
+                        <img style="width: 29.4px;" src="{{ url_for('static',     filename='images/add_mes.png') }}" />
+                    </a>
+                </div>
+
+
+
+
+
+            </li>
+            {%endfor%}
+        </ul>
+    </div>
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+    </footer>
+
+
+
+</body>
+<script src="{{ url_for('static',     filename='js/script.js') }}"></script>
+
+</html>

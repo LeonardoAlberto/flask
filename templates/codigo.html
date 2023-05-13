@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Esqueci senha</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/style.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+
+</head>
+
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header"
+            src="{{ url_for('static',     filename='images/connect.png') }}">
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class=notify>
+        {% for category, message in messages %}
+        <p class="{{ category }} mensagem_notify">{{ message }}</p>
+        {% endfor %}
+    </ul>
+    <script>
+        setTimeout(function () {
+            document.querySelector('.notify').style.display = 'none';
+        }, 6500);
+    </script>
+    {% endif %}
+    {% endwith %}
+
+
+
+    <form method="post">
+        <div class="options_cadastro">
+            <div class="formulario_login">
+                <h2>Altere sua senha</h2>
+                <input class="input_cadastro" name="usuario" type="text" value="{{ usuario }}" disabled>
+                <input class="input_cadastro" name="senha_nova" type="text" placeholder="usuario" required>
+                <input class="input_cadastro" name="senha_confirm" type="text" placeholder="usuario" required>
+                <button class="btn_criarlogin">Login</button>
+
+
+            </div>
+        </div>
+    </form>
+
+
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+    </footer>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Payment</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static',     filename='css/style.css') }}"
+    />
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+    
+
+</head>
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header" src="{{ url_for('static',     filename='images/connect.png') }}">
+        <a href="/painel">
+            <img class="logo_user" src="{{ url_for('static',     filename='images/voltar.png') }}">
+        </a>
+    </header>
+
+
+    
+    <form action="{{ url_for('payment') }}" method="post">
+        <div class="options_cadastro">
+            <div class="formulario_login">
+                <h2>Comprar Créditos</h2>
+                <input name="usuario" class="input_cadastro usuario_inserido" type="text" value="{{ user }}" placeholder="Usuario" disabled>
+                <input name="numero" class="input_cadastro input_cadastro" type="text" id="numero" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" placeholder="Numero" minlength="15" maxlength="15" required/>
+                <input name="creditos" class="input_cadastro input_creditos" type="number" placeholder="Creditos" min="50" required>
+    
+                <button style="width: 250px;" class="btn_criarlogin">Realizar pagamento</button>
+            </div>
+        </div>
+    </form>
+
+
+      
+    
+
+
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+        
+    </footer>
+
+
+    
+</body>
+<script    src="{{ url_for('static',     filename='js/script.js') }}"></script>
+</html>

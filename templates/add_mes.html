@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Deletar Cliente</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/style.css') }}" />
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+
+
+</head>
+
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header"
+            src="{{ url_for('static',     filename='images/connect.png') }}">
+        <a href="/usuarios">
+            <img class="logo_user" src="{{ url_for('static',     filename='images/voltar.png') }}">
+        </a>
+    </header>
+
+
+
+    <div class="options_cadastro">
+        <div class="formulario_cadastro">
+            <h2>Renovar Assinatura</h2>
+            <input class="input_cadastro" id="id" type="text" value="{{ id }}" disabled>
+            <input class="input_cadastro" id="nome" type="text" value="{{ cliente }}" disabled>
+            <input class="input_cadastro" id="mes" name="add_meses" type="number" placeholder="Quantidade Meses.">
+            <button onclick="renovar()" class="btn_criarlogin">Renovar Assinatura</button>
+            <br><br>
+        </div>
+    </div>
+
+
+
+
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+
+    </footer>
+
+
+
+</body>
+<script src="{{ url_for('static',     filename='js/script.js') }}"></script>
+
+</html>

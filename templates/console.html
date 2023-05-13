@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Historico</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/style_table.css') }}" />
+</head>
+
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header"
+            src="{{ url_for('static',     filename='images/connect.png') }}">
+        <a href="/painel">
+            <img class="logo_user" src="{{ url_for('static',     filename='images/voltar.png') }}">
+        </a>
+    </header>
+
+
+
+    <div class="container">
+
+
+        
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col_superior col-1">Nome</div>
+                <div class="col col_superior col-2">Horario</div>
+                <div class="col col_superior col-3">Numero</div>
+                <div class="col col_superior col-4">Descriçao</div>
+                <div class="col col_superior col-5">Status</div>
+            </li>
+            {% for i in range(0, len) %}
+            <li class="table-row">
+                <div class="col col-1" data-label="Nome">{{clientes[i][0]}}</div>
+                <div class="col col-2" data-label="Horario">{{clientes[i][1][8:10]}}/{{clientes[i][1][5:7]}}/{{clientes[i][1][0:4]}}-{{clientes[i][1][11:16]}}</div>
+                <div class="col col-3" data-label="Numero">{{clientes[i][2]}}</div>
+                <div class="col col-4" data-label="Descriçao">{{clientes[i][3]}}</div>
+                <div class="col col-5" data-label="Status">{{clientes[i][4]}}</div>
+            </li>
+            {%endfor%}
+        </ul>
+    </div>
+
+
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+    </footer>
+
+
+
+</body>
+<script src="{{ url_for('static',     filename='js/script.js') }}"></script>
+
+</html>

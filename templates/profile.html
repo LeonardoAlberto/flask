@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Profile</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static',     filename='css/style.css') }}"
+    />
+    <link rel="icon" href="{{ url_for('static',     filename='images/logo_icon.ico') }}" type="image/x-icon">
+</head>
+
+<body>
+
+
+    <header>
+        <img style="width: 200px;" id="img_logo" class="logo_header" src="{{ url_for('static',     filename='images/connect.png') }}">
+        <a href="/painel">
+            <img class="logo_user" src="{{ url_for('static',     filename='images/voltar.png') }}">
+        </a>
+    
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class=notify>
+        {% for category, message in messages %}
+        <p class="{{ category }} mensagem_notify">{{ message }}</p>
+        {% endfor %}
+    </ul>
+    <script>
+        setTimeout(function () {
+            document.querySelector('.notify').style.display = 'none';
+        }, 6500);
+    </script>
+    {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('profile') }}" method="post">
+        <div class="options_cadastro">
+            <div class="formulario_login">
+                <h2>Alteraçao de senha</h2><br>
+                <p>{{ erro }}</p><br>
+                <input class="input_cadastro" name="usuario" type="text" value="{{ user }}" placeholder="Nome" disabled>
+                <input class="input_cadastro" name="senha_atual" type="password" placeholder="Senha Atual" minlength="4" required>
+                <input class="input_cadastro" name="senha_nova" type="password" placeholder="Nova Senha" minlength="4" required>
+                <input class="input_cadastro" name="senha_confirm" type="password" placeholder="Confirmar Senha" minlength="4" required>
+                <button class="btn_criarlogin">Alterar senha</button>
+                
+
+
+            </div>
+        </div>
+    </form>
+
+
+
+
+    <footer>
+        <h2 class="logo_footer">@Leonardo Alberto</h2>
+    </footer>
+
+
+
+</body>
+<script    src="{{ url_for('static',     filename='js/script.js') }}"></script>
+</html>
